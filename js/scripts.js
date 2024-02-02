@@ -26,7 +26,7 @@ const saveToLocalStorage = (teams, rate, payment, choice, win) => {
 
     if (typeof(Storage) !== "undefined") {
         let events = JSON.parse(localStorage.getItem("events")) || [];
-        
+
         events.push({ teams, rate, payment, choice, win });
         localStorage.setItem("events", JSON.stringify(events));
     } else {
@@ -61,10 +61,19 @@ const loadEventsFromLocalStorage = () => {
 
 window.onload = loadEventsFromLocalStorage;
 
-
 submitButton.addEventListener('click', (e) => {
     e.preventDefault();
-    addEvent();
+    if(
+        inputChoice.value != '' && 
+        inputPayment.value != '' &&
+        inputRate.value != '' &&
+        inputTeams.value != ''
+    ) {
+        addEvent();
+    } else {
+        return
+    }
+
     inputTeams.value = '';
     inputRate.value = '';
     inputPayment.value = '';
