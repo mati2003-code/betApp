@@ -10,10 +10,11 @@ const addEvent = () => {
     const tr = document.createElement('tr');
     let possibleWin = parseFloat(inputPayment.value) * parseFloat(inputRate.value) - 0.12;
     let win = parseFloat((possibleWin) * 0.88).toFixed(2); 
+    let rateValue = inputRate.value.length > 1 ? inputRate.value : `${inputRate.value}.00`
     tr.innerHTML = `
         <td>${inputTeams.value}</td>
-        <td>${inputRate.value}</td>
-        <td>${inputPayment.value}</td>
+        <td>${rateValue}</td>
+        <td>${inputPayment.value} zł</td>
         <td>${inputChoice.value}</td>
         <td>${win} zł</td>
     `
@@ -47,7 +48,7 @@ const loadEventsFromLocalStorage = () => {
                 tr.innerHTML = `
                     <td>${event.teams}</td>
                     <td>${event.rate}</td>
-                    <td>${event.payment}</td>
+                    <td>${event.payment} zł</td>
                     <td>${event.choice}</td>
                     <td>${event.win} zł</td>
                 `;
